@@ -31,6 +31,7 @@ header {
 
 .logo {
 	max-width: 130px;
+    float: left;
 }
 
 nav .menu {
@@ -245,7 +246,6 @@ nav .menu li a:hover:after {
     margin-bottom: 0;
 }
 .address {
-	padding: 80px 0;
 	padding-bottom: 15px;
 }
 .address h1 {
@@ -297,9 +297,6 @@ nav .menu li a:hover:after {
 footer {
 	text-align: center;
 }
-
-
-//mouse scroll animate
 
 @-webkit-keyframes ani-mouse {
 	0% {
@@ -443,9 +440,12 @@ footer {
 	position: absolute;
 	top: 20vh;
 	font-size: 30px;
-	width: 100%;
+    left: 0;
+    right: 0;
 	text-align: center;
 	color: #fff;
+    width: 80%;
+    margin: 0 auto;
 }
 
 
@@ -495,7 +495,6 @@ footer {
   visibility: hidden;
 }
 .options ul li label {
-  content: '';
   position: absolute;
   top: -20px;
   left: 50%;
@@ -607,15 +606,225 @@ footer {
 #toast-container {
 	top: 100px !important;
 }
-#slide2,
-#slide3,
-#slide4,
-#slide5 {
-	opacity: 0;
+
+.mobile-option {
+    display: none;
+}
+
+.mobile-option ul li {
+    width: 50%;
+    padding-top: 10px !important;
+}
+
+.mobile-option ul li label {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    height: 110px;
+    padding: 10px;
+    display: table;
+    text-align: center;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+}
+
+.mobile-option ul li label span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.mobile-option .submit button {
+    margin-top: 0px;
+    position: absolute;
+    top: -60px;
+    right: 15px;
+    width: 40px;
+    background: #fff;
+    color: #2F575D;
+    display: none;
+}
+
+.mobile-option ul li label:before {
+    display: none;
+}
+
+.mobile-option .submit button .fa {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+#menu2{
+	width: 35px;
+	height: 35px;
+    display: none;
+    overflow: hidden;
+    float: right;
+	background-color: #fff;
+	border-radius:50%;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	vertical-align: middle;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+#menu2 .trigger{
+	width:35px;
+    display: table-cell;
+    vertical-align: middle;
+	transition: all 400ms ease-in-out;
+}
+#menu2.active .trigger{
+	transform: rotate(180deg);
+}
+#menu2 .line2{
+	width: 25px;
+	height: 3px;
+	margin: 3px auto;
+	background-color:#2F575D;
+	transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+	border-radius: 3px;
+}
+
+#menu2.active{
+	animation-name: in-out;
+	animation-duration: 0.7s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+}
+
+#menu2 .line.first{
+	transform: translateX(0px) translateY(32.5px) rotate(-90deg);
+}
+#menu2.active .line2.top{
+	width: 30px;
+	transform: translateX(0px) translateY(72.5px) rotate(45deg);
+}
+#menu2.active .line2.middle{
+	width: 30px;
+	transform: translateX(0px) translateY(0px) rotate(45deg);
+}
+#menu2.active .line2.bottom{
+	width: 30px;
+	transform: translateX(0px) translateY(-6.5px) rotate(-45deg);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    40% {
+        -moz-transform: translateX(-10px);
+        -ms-transform: translateX(-10px);
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+    60% {
+        -moz-transform: translateX(-5px);
+        -ms-transform: translateX(-5px);
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+}
+
+@keyframes in-out {
+	10%,
+	15% {
+		-webkit-transform: scale(0.7);
+		transform: scale(0.7);
+	}
+	30%,
+	45% {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+	60%,
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
 }
 
 @media (min-width: 1200px) {
 	.container {
 		max-width: 940px;
+	}
+}
+
+@media (max-width: 768px) {
+	.who-are-we {
+		text-align: center;
+	}
+	.who-are-we p {
+		margin-bottom: 30px;
+	}
+	.address {
+		text-align: center;
+	}
+	.qa h1 {
+		font-size: 20px;
+	}
+    #menu2 {
+        display: table;
+    }
+    .menu {
+        display: none;
+        width: 100%;
+        margin-top: 10px !important;
+        text-align: center;
+        background: rgba(255, 255, 255, .8);
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    .menu li {
+        display: block;
+        float: none !important;
+    }
+    .menu li a {
+        color: #EF296F !important;
+        border: none !important;
+        background: transparent !important;
+    }
+    .mobile-option {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+}
+
+@media (max-width: 540px) {
+	.skills label {
+		font-size: 12px;
+	}
+	.skills .tile p {
+		font-size: 12px;
+	}
+	.skills .tile img {
+		max-width: 50px;
+	}
+}
+
+@media (max-width: 420px) {
+	.who-are-we h2, .mission h2, .address h1 {
+		font-size: 30px;
+	}
+	.qa h1 {
+	    font-size: 16px;
+	    padding: 0 10px;
+	}
+	.options ul li {
+		padding-top: 35px;
+	}
+	.options ul li span {
+		font-size: 14px;
 	}
 }

@@ -1,53 +1,70 @@
 $(document).ready(function () {
 
-	slide = $('.slide');
-	move = 4500;
-	bg = $('.bg-inner');
-	width1 = $('html').width();
-	width = width1;
-	tl = new TimelineLite();
-	values = [];
+    slide = $('.slide');
+    move = 4500;
+    bg = $('.bg-inner');
+    width1 = $('html').width();
+    width = width1;
+    tl = new TimelineLite();
+    values = [];
 
-$(".slide .submit button").on("click", function(){
+    if ($(window).width() < 769) {
+        move = 1500;
+    }
 
-	if ($('input[type=radio]').is(':checked')) {
+    $(".slide label").on("click", function () {
 
-		val = $('input[type=radio]:checked').val();
+        $('.slide .submit button').fadeIn("slow");
 
-		$(".slide").each(function() {
+    })
 
-	   		tl 	
-	   			.to(bg, 1.5, {x: -move})
-	   			.to(slide, .5, {x: -width, autoAlpha: 1});
+    $(".slide .submit button").on("click", function () {
 
-	    });
+        if ($('input[type=radio]').is(':checked')) {
 
-	    setTimeout(function(){ 
-	    	$('input[type=radio]:checked').prop('checked', false);
-	    }, 1000);
+            val = $('input[type=radio]:checked').val();
 
-	    values.push(val);
+            $(".slide").each(function () {
 
-	    move += 1000;
+                tl
+                    .to(bg, 1.5, {x: -move})
+                    .to(slide, .5, {x: -width, autoAlpha: 1});
 
-	    width += width1;
+            });
 
-	}else{
+            setTimeout(function () {
+                $('input[type=radio]:checked').prop('checked', false);
+                $('.slide .submit button').fadeOut("fast");
+            }, 1500);
 
-		toastr["warning"]("Please select the correct answer!!!","Answer is required!!!", {
 
-			"closeButton": true, 
-			"positionClass": "toast-top-right"
+            values.push(val);
 
-		});
+            move += 500;
 
-	}
+            width += width1;
 
-  
-});
+        } else {
 
-$(".slide .finish").on("click", function(){
-	tl.pause();
-});
+            toastr["warning"]("Please select the correct answer!!!", "Answer is required!!!", {
+
+                "closeButton": true,
+                "positionClass": "toast-top-right"
+
+            });
+
+        }
+
+    });
+
+    $(".slide .finish").on("click", function () {
+        tl.pause();
+    });
+
+    $("#menu2").click(function () {
+        $(this).toggleClass("active");
+        $(".line2.middle").toggleClass("hide");
+        $(".menu").slideToggle();
+    });
 
 });
