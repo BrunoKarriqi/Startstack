@@ -15,6 +15,10 @@ body {
     margin: 0 !important;
 }
 
+.no-right-padding {
+    padding-right: 0 !important;
+}
+
 .col-xs-4 {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 33.333333%;
@@ -23,8 +27,20 @@ body {
     position: relative;
     width: 100%;
     min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.col-xs-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
 .questionnaire {
@@ -37,6 +53,11 @@ header {
     position: absolute;
     width: 100%;
     z-index: 3;
+}
+
+header .col-md-12 {
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .overlay {
@@ -509,8 +530,7 @@ footer {
 .quiz-description {
     position: absolute;
     width: 100%;
-    text-align: center;
-    top: 40vh;
+    bottom: 53vh;
 }
 
 .quiz-description .smaller {
@@ -536,6 +556,12 @@ footer {
 .quiz-description p.border {
     border: 2px solid #fff !important;
     border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    width: auto;
+    padding: 0 10px;
+    min-width: 70px;
+    bottom: 0;
 }
 
 .title h1 {
@@ -820,9 +846,10 @@ footer {
     margin-top: 0;
     position: absolute;
     top: -20px;
-    right: 15px;
+    right: 25px;
     width: 40px;
     background: #fff;
+    padding: 0;
     color: #2F575D;
     display: none;
 }
@@ -1068,6 +1095,15 @@ footer {
 @media (max-height: 375px) {
     .qa h1 {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .title h1 {
+        font-size: 14px;
+    }
+    .quiz-description .smaller p {
+        font-size: 12px;
     }
 }
 
