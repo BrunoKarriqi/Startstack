@@ -3,12 +3,33 @@ html, body {
     overflow-x: hidden;
 }
 
+body {
+    counter-reset: section;
+}
+
 .container {
     max-width: 940px;
 }
 
 .no-margin {
     margin: 0 !important;
+}
+
+.col-xs-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.questionnaire {
+    height: 100vh;
+    overflow: hidden;
 }
 
 header {
@@ -410,7 +431,6 @@ footer {
     line-height: 18px;
     font-size: 13px;
     font-weight: normal;
-    color: #7f8c8d;
     color: #ffffff;
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: 2px;
@@ -486,6 +506,61 @@ footer {
     transition: transform 400ms ease-in;
 }
 
+.quiz-description {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 40vh;
+}
+
+.quiz-description .smaller {
+    display: none;
+}
+
+.quiz-description .big {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quiz-description .big p{
+    font-size: 16px;
+    color: #fff;
+}
+
+.quiz-description .smaller p{
+    font-size: 14px;
+    color: #fff;
+}
+
+.quiz-description p.border {
+    border: 2px solid #fff !important;
+    border-radius: 10px;
+}
+
+.title h1 {
+    position: absolute;
+    top: 10vh;
+    font-size: 30px;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+}
+
+.title h1::before {
+    counter-increment: section;
+    content: counter(section) "/5";
+    display: block;
+    margin-bottom: 20px;
+}
+
+.title h1:not(:first-child) {
+    opacity: 0;
+}
+
 .qa h1 {
     position: absolute;
     top: 20vh;
@@ -528,7 +603,6 @@ footer {
 
 .options {
     height: 50vh;
-    background-color: #cee9f0;
 }
 
 .options ul {
@@ -647,7 +721,11 @@ footer {
 }
 
 .slide .qa h1 {
-    top: -30vh;
+    top: -25vh;
+}
+
+#slide2 .qa h1, #slide3 .qa h1, #slide4 .qa h1, #slide5 .qa h1 {
+    opacity: 0;
 }
 
 .submit {
@@ -683,33 +761,54 @@ footer {
     display: none;
 }
 
+.mobile-option ul{
+    height: 100%;
+}
+
 .mobile-option ul li {
     width: 50%;
-    padding-top: 10px !important;
+    height: 50%;
+}
+
+.mobile-option ul li:first-child {
+    padding-left: 25px;
+    padding-top: 25px !important;
+    padding-right: 12.5px;
+    padding-bottom: 12.5px;
+}
+
+.mobile-option ul li:nth-child(2) {
+    padding-left: 12.5px;
+    padding-top: 25px !important;
+    padding-right: 25px;
+    padding-bottom: 12.5px;
+}
+
+.mobile-option ul li:nth-child(3) {
+    padding-left: 25px;
+    padding-top: 12.5px !important;
+    padding-right: 12.5px;
+    padding-bottom: 25px;
+}
+
+.mobile-option ul li:nth-child(4) {
+    padding-left: 12.5px;
+    padding-top: 12.5px !important;
+    padding-right: 25px;
+    padding-bottom: 25px;
 }
 
 .mobile-option ul li label {
     position: relative;
-    width: 91%;
+    width: 100%;
     margin: 0 auto;
-    margin-bottom: 2px;
-    height: 110px;
+    height: 100%;
     padding: 10px;
     display: table;
     text-align: center;
     top: 0;
-    left: 0px;
+    left: 0;
     border-radius: 10px;
-}
-
-.mobile-option ul li:nth-child(odd) label {
-    margin-right: 5px;
-    margin-left: 10px;
-}
-
-.mobile-option ul li:nth-child(even) label {
-    margin-left: 5px;
-    margin-right: 10px;
 }
 
 .mobile-option ul li label span {
@@ -718,9 +817,9 @@ footer {
 }
 
 .mobile-option .submit button {
-    margin-top: 0px;
+    margin-top: 0;
     position: absolute;
-    top: -60px;
+    top: -20px;
     right: 15px;
     width: 40px;
     background: #fff;
@@ -766,8 +865,8 @@ footer {
 }
 
 #menu2 .line2 {
-    width: 25px;
-    height: 3px;
+    width: 20px;
+    height: 2px;
     margin: 3px auto;
     background-color: #2F575D;
     transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease, top 0.3s ease;
@@ -786,18 +885,18 @@ footer {
 }
 
 #menu2.active .line2.top {
-    width: 30px;
+    width: 20px;
     transform: translateX(0px) translateY(72.5px) rotate(45deg);
 }
 
 #menu2.active .line2.middle {
-    width: 30px;
+    width: 20px;
     transform: translateX(0px) translateY(0px) rotate(45deg);
 }
 
 #menu2.active .line2.bottom {
-    width: 30px;
-    transform: translateX(0px) translateY(-6.5px) rotate(-45deg);
+    width: 20px;
+    transform: translateX(0px) translateY(-5.5px) rotate(-45deg);
 }
 
 @keyframes bounce {
@@ -845,6 +944,12 @@ footer {
     }
 }
 
+@media (max-width: 812px) {
+    .submit button {
+        margin-top: 30px;
+    }
+}
+
 @media (max-width: 768px) {
     .who-are-we {
         text-align: center;
@@ -862,6 +967,10 @@ footer {
         font-size: 20px;
     }
 
+    .title h1 {
+        font-size: 20px;
+    }
+
     #menu2 {
         display: table;
     }
@@ -871,7 +980,7 @@ footer {
         width: 100%;
         margin-top: 10px !important;
         text-align: center;
-        background: rgba(255, 255, 255, .8);
+        background: #ffffff;
         -webkit-border-radius: 7px;
         -moz-border-radius: 7px;
         border-radius: 7px;
@@ -895,6 +1004,27 @@ footer {
 
     .desktop {
         display: none;
+    }
+    .questionnaire {
+        height: 90vh;
+    }
+    .bg {
+        height: 45vh;
+    }
+    .options {
+        height: 45vh;
+    }
+    .bg-inner {
+        height: 45vh;
+    }
+    .quiz-description .smaller {
+        display: flex;
+    }
+    .quiz-description .big {
+        display: none;
+    }
+    .quiz-description .row {
+        margin: 0 !important;
     }
 }
 
@@ -922,6 +1052,10 @@ footer {
         padding: 0 10px;
     }
 
+    .title h1 {
+        font-size: 16px;
+    }
+
     .options ul li {
         padding-top: 35px;
     }
@@ -929,19 +1063,51 @@ footer {
     .options ul li span {
         font-size: 14px;
     }
-    .mobile-option ul li label {
-        height: 167px;
+}
+
+@media (max-height: 375px) {
+    .qa h1 {
+        font-size: 16px;
     }
 }
 
-@media (max-width: 375px) {
-    .mobile-option ul li label {
-        height: 150px;
+@media (max-height: 420px) {
+    html, body {
+        overflow: hidden;
+        position: fixed;
+    }
+    .questionnaire {
+        height: 80vh;
+    }
+    .bg {
+        height: 40vh;
+    }
+    .options {
+        height: 40vh;
+    }
+    .title h1 {
+        font-size: 16px;
+    }
+    .title h1::before {
+        margin-bottom: 5px;
+    }
+    .quiz-description {
+        top: 32vh;
     }
 }
 
-@media (max-width: 320px) {
-    .mobile-option ul li label {
-        height: 125px;
+@media (max-height: 375px) {
+    .questionnaire {
+        height: 85vh;
+    }
+    .bg {
+        height: 42.5vh;
+    }
+    .options {
+        height: 42.5vh;
+    }
+    html, body {
+        overflow: hidden;
+        position: fixed;
     }
 }
