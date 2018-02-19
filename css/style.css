@@ -530,7 +530,7 @@ footer {
 .quiz-description {
     position: absolute;
     width: 100%;
-    bottom: 53vh;
+    bottom: 43vh;
 }
 
 .quiz-description .smaller {
@@ -1070,6 +1070,11 @@ footer {
 }
 
 @media (max-width: 420px) {
+    html, body {
+        overflow: hidden;
+        position: fixed;
+    }
+
     .who-are-we h2, .mission h2, .address h1 {
         font-size: 30px;
     }

@@ -3,11 +3,11 @@ $(document).ready(function () {
     slide = $('.slide');
     move = 4500;
     bg = $('.bg-inner');
-    width1 = $('html').width();
+    width1 = $('body').width();
     width = width1;
     number = 2;
     number1 = 1;
-    tl = new TimelineLite();
+    tween = new TimelineLite();
     values = [];
 
     $(".slide label").on("click", function () {
@@ -17,7 +17,6 @@ $(document).ready(function () {
     });
 
     if ($(window).width() < 769) {
-
         move = 1400;
 
         $(".slide .submit button").on("click", function () {
@@ -29,21 +28,18 @@ $(document).ready(function () {
             if ($('input[type=radio]').is(':checked')) {
 
                 val = $('input[type=radio]:checked').val();
-
                 $(".slide").each(function () {
-
-                    tl
-                        .to(bg, 1.5, {x: -move})
-                        .to(slide, .5, {x: -width})
-                        .to(titlePrev, .5, {opacity: 0})
-                        .to(title, .2, {opacity: 1});
+                    TweenLite.to(bg, 1, {x: -move});
+                    TweenLite.to(slide, 1, {x: -width});
+                    TweenLite.to(titlePrev, 1, {opacity: 0});
+                    TweenLite.to(title, 1, {opacity: 1, delay: 1});
 
                 });
 
+                $('.slide .submit button').fadeOut("fast");
                 setTimeout(function () {
                     $('input[type=radio]:checked').prop('checked', false);
-                    $('.slide .submit button').fadeOut("fast");
-                }, 1500);
+                }, 700);
 
                 values.push(val);
 
@@ -82,11 +78,10 @@ $(document).ready(function () {
 
                 $(".slide").each(function () {
 
-                    tl
-                        .to(bg, 1.5, {x: -move})
-                        .to(slide, .5, {x: -width})
-                        .to(titlePrev, .5, {opacity: 0})
-                        .to(title, .2, {opacity: 1});
+                    TweenLite.to(bg, 1.5, {x: -move});
+                    TweenLite.to(slide, .5, {x: -width});
+                    TweenLite.to(titlePrev, .5, {opacity: 0});
+                    TweenLite.to(title, .2, {opacity: 1});
 
                 });
 
@@ -122,7 +117,7 @@ $(document).ready(function () {
 
 
     $(".slide .finish").on("click", function () {
-        tl.pause();
+        tween.pause();
     });
 
     $("#menu2").click(function () {
