@@ -1,25 +1,30 @@
 $(document).ready(function () {
 
-    slide = $('.slide');
-    move = 4500;
-    bg = $('.bg-inner');
-    width1 = $('body').width();
-    width = width1;
-    number = 2;
-    number1 = 1;
-    tween = new TimelineLite();
-    values = [];
+        slide = $('.slide');
+        move = 4500;
+        bg = $('.bg-inner');
+        width1 = $('body').width();
+        width = width1;
+        number = 2;
+        number1 = 1;
+        values = [];
 
     $(".slide label").on("click", function () {
 
-        $('.slide .submit button').fadeIn("slow");
+        $('.slide .next button').fadeIn("slow");
+
+    });
+
+    $("#slide5 label").on("click", function () {
+
+        $('.submit button').fadeIn("slow");
 
     });
 
     if ($(window).width() < 769) {
         move = 1400;
 
-        $(".slide .submit button").on("click", function () {
+        $(".slide .next button").on("click", function () {
 
             title = $('.title .h1_' + number);
 
@@ -28,7 +33,9 @@ $(document).ready(function () {
             if ($('input[type=radio]').is(':checked')) {
 
                 val = $('input[type=radio]:checked').val();
+
                 $(".slide").each(function () {
+
                     TweenLite.to(bg, 1, {x: -move});
                     TweenLite.to(slide, 1, {x: -width});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
@@ -36,7 +43,7 @@ $(document).ready(function () {
 
                 });
 
-                $('.slide .submit button').fadeOut("fast");
+                $('.slide .next button').fadeOut("fast");
                 setTimeout(function () {
                     $('input[type=radio]:checked').prop('checked', false);
                 }, 700);
@@ -66,7 +73,7 @@ $(document).ready(function () {
 
     } else {
 
-        $(".slide .submit button").on("click", function () {
+        $(".slide .next button").on("click", function () {
 
             title = $('.title .h1_' + number);
 
@@ -78,10 +85,10 @@ $(document).ready(function () {
 
                 $(".slide").each(function () {
 
-                    TweenLite.to(bg, 1.5, {x: -move});
-                    TweenLite.to(slide, .5, {x: -width});
-                    TweenLite.to(titlePrev, .5, {opacity: 0});
-                    TweenLite.to(title, .2, {opacity: 1});
+                    TweenLite.to(bg, 1, {x: -move});
+                    TweenLite.to(slide, 1, {x: -width});
+                    TweenLite.to(titlePrev, 1, {opacity: 0});
+                    TweenLite.to(title, 1, {opacity: 1, delay: 1});
 
                 });
 
@@ -115,15 +122,92 @@ $(document).ready(function () {
 
     }
 
-
-    $(".slide .finish").on("click", function () {
-        tween.pause();
-    });
-
     $("#menu2").click(function () {
         $(this).toggleClass("active");
         $(".line2.middle").toggleClass("hide");
         $(".menu").slideToggle();
     });
+
+    $(".finish").click(function () {
+
+        $('#wrap-popup').fadeIn('fast');
+
+        var pieces = 70,
+            speed = 1,
+            pieceW = 30,
+            pieceH = 35;
+
+
+        for (var i = pieces - 1; i >= 0; i--) {
+            $('#popup').prepend('<div class="piece" style="width:' + pieceW + 'px; height:' + pieceH + 'px"></div>');
+        }
+        ;
+
+        function breakGlass(from) {
+            if (from === "reverse") {
+                $('.piece').each(function () {
+                    TweenLite.to($(this), speed, {x: 0, y: 0, rotationX: 0, rotationY: 0, opacity: 1, z: 0});
+                    TweenLite.to($('#popup h1'), 0.2, {opacity: 1, delay: speed});
+                });
+                return;
+            }
+
+            if (!from) {
+                TweenLite.to($('#popup h1'), 0.2, {opacity: 0});
+            } else {
+                TweenLite.from($('#popup h1'), 0.5, {opacity: 0, delay: speed});
+            }
+
+            $('.piece').each(function () {
+                var distX = getRandomArbitrary(-250, 250),
+                    distY = getRandomArbitrary(-250, 250),
+                    rotY = getRandomArbitrary(-720, 720),
+                    rotX = getRandomArbitrary(-720, 720),
+                    z = getRandomArbitrary(-500, 500);
+
+                if (!from) {
+                    TweenLite.to($(this), speed, {
+                        x: distX,
+                        y: distY,
+                        rotationX: rotX,
+                        rotationY: rotY,
+                        opacity: 0,
+                        z: z
+                    });
+                } else {
+                    TweenLite.from($(this), speed, {
+                        x: distX,
+                        y: distY,
+                        rotationX: rotX,
+                        rotationY: rotY,
+                        opacity: 0,
+                        z: z
+                    });
+                }
+            });
+        }
+
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+
+        // $('.piece, h1').click(function () {
+        //     breakGlass();
+        //     setTimeout(function(){
+        //
+        //         $('#wrap-popup').fadeOut('fast');
+        //
+        //     }, 500);
+        //
+        // });
+        $('.finish').click(function () {
+            breakGlass('reverse');
+        });
+
+        breakGlass(true);
+
+    });
+
 
 });
