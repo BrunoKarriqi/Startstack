@@ -757,12 +757,31 @@ footer {
     opacity: 0;
 }
 
+.button-option-mobile {
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+
+.button-option-mobile .submit button,
+.button-option-mobile .next button {
+    margin-top: 0;
+    position: absolute;
+    top: -20px;
+    right: 25px;
+    width: 40px;
+    background: #fff;
+    padding: 0;
+    color: #2F575D;
+    display: none;
+}
+
 .submit, .next {
     text-align: center;
 }
 
 .submit button, .next button {
-    background: #a5bfc5;
+    background: #dcf3fa;
     border: none;
     border-radius: 20px;
     color: #1b464d;
@@ -771,6 +790,7 @@ footer {
     cursor: pointer;
     margin-top: 80px;
     outline: none;
+    display: none;
     -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
     -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
@@ -845,23 +865,11 @@ footer {
     vertical-align: middle;
 }
 
-.mobile-option .submit button, .mobile-option .next button {
-    margin-top: 0;
-    position: absolute;
-    top: -20px;
-    right: 25px;
-    width: 40px;
-    background: #fff;
-    padding: 0;
-    color: #2F575D;
-    display: none;
-}
-
 .mobile-option ul li label:before {
     display: none;
 }
 
-.mobile-option .submit button .fa, .mobile-option .next button .fa {
+.submit button .fa, .next button .fa {
     -moz-animation: bounce 2s infinite;
     -webkit-animation: bounce 2s infinite;
     animation: bounce 2s infinite;
@@ -1101,6 +1109,9 @@ footer {
     }
     .quiz-description .row {
         margin: 0 !important;
+    }
+    .button-option-mobile {
+        display: block;
     }
 }
 

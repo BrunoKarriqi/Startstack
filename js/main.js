@@ -11,20 +11,20 @@ $(document).ready(function () {
 
     $(".slide label").on("click", function () {
 
-        $('.slide .next button').fadeIn("slow");
+        $('.button-option-mobile .next button').fadeIn("slow");
 
     });
 
-    $("#slide5 label").on("click", function () {
+    $(".slide:last-child label").on("click", function () {
 
-        $('.submit button').fadeIn("slow");
+        $('.button-option-mobile .submit button').fadeIn("slow");
 
     });
 
     if ($(window).width() < 769) {
         move = 1400;
 
-        $(".slide .next button").on("click", function () {
+        $(".button-option-mobile .next button").on("click", function () {
 
             title = $('.title .h1_' + number);
 
@@ -36,14 +36,14 @@ $(document).ready(function () {
 
                 $(".slide").each(function () {
 
-                    TweenLite.to(bg, 1, {x: -move, ease: Sine.easeOut});
+                    TweenLite.to(bg, 1, {x: -move, ease: Sine.easeOut, delay: 0.5});
                     TweenLite.to(slide, 1, {x: -width, ease: Sine.easeOut});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
                     TweenLite.to(title, 1, {opacity: 1, delay: 1});
 
                 });
 
-                $('.slide .next button').fadeOut("fast");
+                $('.button-option-mobile .next button').fadeOut("fast");
                 setTimeout(function () {
                     $('input[type=radio]:checked').prop('checked', false);
                 }, 700);
@@ -73,6 +73,8 @@ $(document).ready(function () {
 
     } else {
 
+        $('.slide .next button').fadeIn("slow");
+
         $(".slide .next button").on("click", function () {
 
             title = $('.title .h1_' + number);
@@ -86,15 +88,25 @@ $(document).ready(function () {
                 $(".slide").each(function () {
 
                     TweenLite.to(bg, 2, {x: -move, ease: SlowMo.ease.config(1, 0.1, false)});
-                    TweenLite.to(slide, 1, {x: -width});
+                    TweenLite.to(slide, 1, {x: -width, delay: 0.5});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
                     TweenLite.to(title, 1, {opacity: 1, delay: 1});
+
+                    $('.slide .next button').fadeOut("fast");
 
                 });
 
                 setTimeout(function () {
                     $('input[type=radio]:checked').prop('checked', false);
+                    $('.slide .next button').fadeIn("fast");
                 }, 1500);
+
+                $('.slide:nth-last-child(2) .next button').click(function () {
+                    setTimeout(function () {
+                        $('.slide .submit button').fadeIn("fast");
+                    }, 1500);
+                });
+
 
 
                 values.push(val);
