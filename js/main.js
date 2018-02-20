@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
         slide = $('.slide');
-        move = 4500;
+        move = 5000;
         bg = $('.bg-inner');
         width1 = $('body').width();
         width = width1;
@@ -36,8 +36,8 @@ $(document).ready(function () {
 
                 $(".slide").each(function () {
 
-                    TweenLite.to(bg, 1, {x: -move});
-                    TweenLite.to(slide, 1, {x: -width});
+                    TweenLite.to(bg, 1, {x: -move, ease: Sine.easeOut});
+                    TweenLite.to(slide, 1, {x: -width, ease: Sine.easeOut});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
                     TweenLite.to(title, 1, {opacity: 1, delay: 1});
 
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
                 values.push(val);
 
-                move += 400;
+                move += 500;
 
                 width += width1;
 
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
                 $(".slide").each(function () {
 
-                    TweenLite.to(bg, 1, {x: -move});
+                    TweenLite.to(bg, 2, {x: -move, ease: SlowMo.ease.config(1, 0.1, false)});
                     TweenLite.to(slide, 1, {x: -width});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
                     TweenLite.to(title, 1, {opacity: 1, delay: 1});
@@ -99,7 +99,7 @@ $(document).ready(function () {
 
                 values.push(val);
 
-                move += 500;
+                move += 1700;
 
                 width += width1;
 

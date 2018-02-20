@@ -527,8 +527,7 @@ footer {
     height: 50vh;
     width: 200%;
     z-index: -1;
-    transform: translateX(-25%);
-    transition: transform 400ms ease-in;
+    transform: translateX(-28%);
 }
 
 .quiz-description {
