@@ -28,6 +28,10 @@ $(document).ready(function () {
 
             title = $('.title .h1_' + number);
 
+            titleNrPrev = $('.title .h1_' + number1 + 'span');
+
+            titleNr = $('.title .h1_' + number + 'span');
+
             titlePrev = $('.title .h1_' + number1);
 
             if ($('input[type=radio]').is(':checked')) {
@@ -255,22 +259,9 @@ $(document).ready(function () {
         $(this).parent().parent().removeClass('height')
     })
 
-    if ($(window).width() < 420) {
-        $('.c-q section input').focus(function () {
-            $('.c-q').css('position', 'relative');
-            $('.c-q').css('height', '200vh');
-            $('.c-q section').css('height', '200vh');
-        })
-
-        $('.c-q section input').blur(function () {
-            $('.c-q').css('position', 'fixed');
-            $('.c-q').css('height', '100vh');
-        })
-    }
-
 
     $('.tags-input').magicSuggest({
+        placeholder: '',
         data: ['Banana', 'Apple', 'Orange', 'Lemon']
     });
-
 });
