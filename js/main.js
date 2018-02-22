@@ -8,6 +8,8 @@ $(document).ready(function () {
         number = 2;
         number1 = 1;
         values = [];
+        questionNr = $('.question-number div p')
+        question = 45;
 
     $(".slide label").on("click", function () {
 
@@ -22,15 +24,20 @@ $(document).ready(function () {
     });
 
     if ($(window).width() < 769) {
-        move = 1400;
+        move = 2500;
+
+        question = 31;
+        if ($(window).width() < 420) {
+
+            move = 1500;
+
+            question = 24;
+
+        }
 
         $(".button-option-mobile .next button").on("click", function () {
 
             title = $('.title .h1_' + number);
-
-            titleNrPrev = $('.title .h1_' + number1 + 'span');
-
-            titleNr = $('.title .h1_' + number + 'span');
 
             titlePrev = $('.title .h1_' + number1);
 
@@ -44,6 +51,7 @@ $(document).ready(function () {
                     TweenLite.to(slide, 1, {x: -width, ease: Sine.easeOut});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
                     TweenLite.to(title, 1, {opacity: 1, delay: 1});
+                    TweenLite.to(questionNr, 1, {y: -question});
 
                 });
 
@@ -61,6 +69,8 @@ $(document).ready(function () {
                 number += 1;
 
                 number1 += 1;
+
+                question += 24;
 
             } else {
 
@@ -95,6 +105,8 @@ $(document).ready(function () {
                     TweenLite.to(slide, 1, {x: -width, delay: 0.5});
                     TweenLite.to(titlePrev, 1, {opacity: 0});
                     TweenLite.to(title, 1, {opacity: 1, delay: 1});
+                    TweenLite.to(questionNr, 1, {y: -question});
+
 
                     $('.slide .next button').fadeOut("fast");
 
@@ -123,6 +135,8 @@ $(document).ready(function () {
 
                 number1 += 1;
 
+                question += 45;
+
             } else {
 
                 toastr["warning"]("Please select the correct answer!!!", "Answer is required!!!", {
@@ -141,7 +155,8 @@ $(document).ready(function () {
     $("#menu2").click(function () {
         $(this).toggleClass("active");
         $(".line2.middle").toggleClass("hide");
-        $(".menu").slideToggle();
+        // $(".menu").slideToggle();
+        $('#overlay').toggleClass('open');
     });
 
     $(".finish").click(function () {
@@ -207,16 +222,6 @@ $(document).ready(function () {
             return Math.random() * (max - min) + min;
         }
 
-
-        // $('.piece, h1').click(function () {
-        //     breakGlass();
-        //     setTimeout(function(){
-        //
-        //         $('#wrap-popup').fadeOut('fast');
-        //
-        //     }, 500);
-        //
-        // });
         $('.finish').click(function () {
             breakGlass('reverse');
         });
