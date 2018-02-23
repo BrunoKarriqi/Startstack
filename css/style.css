@@ -1526,6 +1526,9 @@ footer {
     #menu2 {
         top: 30px;
     }
+    .banner video {
+        left: -50%;
+    }
 }
 
 @media (max-height: 375px) {
